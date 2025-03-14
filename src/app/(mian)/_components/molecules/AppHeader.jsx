@@ -10,8 +10,8 @@ const AppHeader = () => {
     <div className="px-2 py-2 text-black flex justify-between items-center">
       <SidebarTrigger />
       <Image
-        src={user?.photoURL}
-        alt="user"
+        src={user?.pictureURL}
+        alt={user?.name }
         width={30}
         height={30}
         className="rounded-full"
