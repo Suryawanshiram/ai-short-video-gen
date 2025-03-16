@@ -6,9 +6,11 @@ import Auth from "../molecules/Auth";
 import { useAuthContext } from "@/providers/provider";
 import Image from "next/image";
 import Link from "next/link";
+// import { ModeToggle } from "../atoms/theme-toggle";
 
 const Header = () => {
   const { user } = useAuthContext();
+
   return (
     <div className="flex w-full justify-between items-center">
       <div className="flex w-full gap-4">
@@ -17,7 +19,11 @@ const Header = () => {
       </div>
       {!user ? (
         <Auth>
-          <Button>Get Started</Button>
+          <div className="text-black dark:text-white">
+            <Button className="dark:text-white border border-white">
+              Get Started
+            </Button>
+          </div>
         </Auth>
       ) : (
         <div className="flex gap-3 mr-4">
@@ -27,13 +33,19 @@ const Header = () => {
           >
             Dashboard
           </Link>
-          <Image
-            src={user?.photoURL}
-            alt="user"
-            width={40}
-            height={40}
-            className="rounded-full"
-          />
+          {/* <div className="">
+            <ModeToggle />
+          </div> */}
+
+          {user?.pictureURL && (
+            <Image
+              src={user?.pictureURL}
+              alt="user"
+              width={40}
+              height={40}
+              className="rounded-full"
+            />
+          )}
         </div>
       )}
     </div>

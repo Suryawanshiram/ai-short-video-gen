@@ -3,7 +3,7 @@ import Hero from "@/components/organisms/Hero";
 
 export default function Home() {
   return (
-    <div className="px-4 py-6 flex w-full flex-col">
+    <div className="px-4 py-6 flex w-full flex-col dark:text-white">
       {/* Header */}
       <div className="">
         <Header />

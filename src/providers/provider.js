@@ -14,43 +14,22 @@ const Provider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      console.log("Firebase User:", user); // Debugging
+      console.log("Firebase User:", user);
 
-      if (user && user.email) {
-        // Ensure the user object has an email before proceeding
-        setUser(user);
-
+      if (user) {
         const result = await CreateUser({
-          name: user.displayName || "Anonymous User",
-          email: user.email,
-          pictureURL:
-            user.photoURL || "https://example.com/default-profile.png",
+          name: user?.displayName,
+          email: user?.email,
+          pictureURL: user?.photoURL,
         });
 
         console.log("User Created in Convex:", result);
-      } else {
-        console.warn("User is null or missing email, skipping CreateUser");
+        setUser(result);
       }
     });
 
     return () => unsubscribe();
   }, []);
-
-  // useEffect(() => {
-  //   const unsubscribe = onAuthStateChanged(auth, async (user) => {
-  //     console.log(user);
-  //     setUser(user);
-
-  //     const result = await CreateUser({
-  //       name: user?.displayName,
-  //       email: user?.email,
-  //       pictureURL: user?.photoURL,
-  //     });
-  //     console.log(result);
-  //   });
-  //   return () => unsubscribe();
-  // }, []);
-
   return (
     <div>
       <AuthContext.Provider value={{ user }}>

@@ -11,7 +11,7 @@ const AppHeader = () => {
       <SidebarTrigger />
       <Image
         src={user?.pictureURL}
-        alt={user?.name }
+        alt={user?.name}
         width={30}
         height={30}
         className="rounded-full"
